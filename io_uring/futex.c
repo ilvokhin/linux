@@ -336,7 +336,7 @@ int io_futex_wait(struct io_kiocb *req, unsigned int issue_flags)
 
 	req->flags |= REQ_F_ASYNC_DATA;
 	req->async_data = ifd;
-	ifd->q = futex_q_init;
+	ifd->q = FUTEX_Q_INIT;
 	ifd->q.bitset = iof->futex_mask;
 	ifd->q.wake = io_futex_wake_fn;
 	ifd->req = req;

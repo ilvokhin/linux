@@ -990,7 +990,7 @@ int futex_lock_pi(u32 __user *uaddr, unsigned int flags, ktime_t *time, int tryl
 	struct hrtimer_sleeper timeout, *to;
 	struct task_struct *exiting;
 	struct rt_mutex_waiter rt_waiter;
-	struct futex_q q = futex_q_init;
+	struct futex_q q = FUTEX_Q_INIT;
 	DEFINE_WAKE_Q(wake_q);
 	int res, ret;
 

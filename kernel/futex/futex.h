@@ -224,7 +224,12 @@ struct futex_q {
 #endif
 } __randomize_layout;
 
-extern const struct futex_q futex_q_init;
+#define FUTEX_Q_INIT (struct futex_q) {			\
+	/* list gets initialized in futex_queue() */	\
+	.wake		= futex_wake_mark,		\
+	.key		= FUTEX_KEY_INIT,		\
+	.bitset		= FUTEX_BITSET_MATCH_ANY,	\
+}
 
 enum futex_access {
 	FUTEX_READ,

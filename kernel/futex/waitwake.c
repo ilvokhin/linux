@@ -701,7 +701,7 @@ retry_private:
 int __futex_wait(u32 __user *uaddr, unsigned int flags, u32 val,
 		 struct hrtimer_sleeper *to, u32 bitset)
 {
-	struct futex_q q = futex_q_init;
+	struct futex_q q = FUTEX_Q_INIT;
 	int ret;
 
 	if (!bitset)

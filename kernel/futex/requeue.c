@@ -57,14 +57,6 @@ enum {
 	Q_REQUEUE_PI_LOCKED,
 };
 
-const struct futex_q futex_q_init = {
-	/* list gets initialized in futex_queue()*/
-	.wake		= futex_wake_mark,
-	.key		= FUTEX_KEY_INIT,
-	.bitset		= FUTEX_BITSET_MATCH_ANY,
-	.requeue_state	= ATOMIC_INIT(Q_REQUEUE_PI_NONE),
-};
-
 /**
  * requeue_futex() - Requeue a futex_q from one hb to another
  * @q:		the futex_q to requeue
@@ -798,7 +790,7 @@ int futex_wait_requeue_pi(u32 __user *uaddr, unsigned int flags,
 	struct hrtimer_sleeper timeout, *to;
 	struct rt_mutex_waiter rt_waiter;
 	union futex_key key2 = FUTEX_KEY_INIT;
-	struct futex_q q = futex_q_init;
+	struct futex_q q = FUTEX_Q_INIT;
 	struct rt_mutex_base *pi_mutex;
 	int res, ret;
 

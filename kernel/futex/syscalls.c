@@ -247,7 +247,7 @@ int futex_parse_waitv(struct futex_vector *futexv,
 		futexv[i].w.flags = flags;
 		futexv[i].w.val = aux.val;
 		futexv[i].w.uaddr = aux.uaddr;
-		futexv[i].q = futex_q_init;
+		futexv[i].q = FUTEX_Q_INIT;
 		futexv[i].q.wake = wake;
 		futexv[i].q.wake_data = wake_data;
 	}
